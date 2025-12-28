@@ -25,4 +25,5 @@ Topics = continuous streaming (asynchronous)
 Services = single request-response (synchronous)
 
 Example Use Case: Add two numbers, request robot position, start/stop simulation
+
 Service Client → Request → Service Server → Response → Client
