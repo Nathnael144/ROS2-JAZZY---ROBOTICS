@@ -114,6 +114,129 @@ You can remap:
 
 Topics (/cmd_vel, /scan)
 
+
+
+Background
+1. The ROS 2 Graph
+
+The ROS graph is a network of nodes and the connections between them.
+
+Visualizes how data flows between nodes in a robotic system.
+
+2. Nodes in ROS 2
+
+Nodes are modular executables responsible for a single task (e.g., publishing sensor data, controlling motors).
+
+Nodes communicate via topics, services, actions, or parameters.
+
+One executable can contain multiple nodes.
+
+Tasks
+1. ros2 run
+
+Launch an executable from a package:
+
+ros2 run <package_name> <executable_name>
+
+
+Example:
+
+ros2 run turtlesim turtlesim_node
+ros2 run turtlesim turtle_teleop_key
+
+2. ros2 node list
+
+List all active nodes:
+
+ros2 node list
+
+
+Example workflow:
+
+Start turtlesim_node:
+
+ros2 run turtlesim turtlesim_node
+
+
+Start turtle_teleop_key:
+
+ros2 run turtlesim turtle_teleop_key
+
+
+Check active nodes:
+
+ros2 node list
+
+
+Expected output:
+
+/turtlesim
+/teleop_turtle
+
+2.1 Node Remapping
+
+Change the default node name using --ros-args --remap:
+
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
+
+
+Check nodes again:
+
+ros2 node list
+
+
+Output:
+
+/my_turtle
+/turtlesim
+/teleop_turtle
+
+3. ros2 node info
+
+Get detailed information about a node:
+
+ros2 node info <node_name>
+
+
+Example:
+
+ros2 node info /my_turtle
+
+
+Sample output:
+
+/my_turtle
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /my_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    ...
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+
+
+Shows subscribers, publishers, services, and actions.
+
+Provides insight into ROS graph connections.
+
+Summary
+
+A node is a fundamental modular unit in ROS 2.
+
+Use ros2 run to launch nodes, ros2 node list to list them, and ros2 node info to inspect them.
+
+Node remapping allows custom naming and topic/service reassignments.
+
+Understanding nodes is essential before exploring topics, services, parameters, and actions.
+
 Services
 
 Actions
