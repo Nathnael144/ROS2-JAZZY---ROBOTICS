@@ -89,3 +89,35 @@ ros2 node list
 Get node details:
 
 ros2 node info /turtlesim
+
+In ROS 2, remapping means changing a node’s communication names (topics, services, actions, parameters) without modifying the source code.
+
+🧠 Simple Definition
+
+Remapping allows you to redirect where a node sends or receives data at runtime.
+
+🔧 Why Remapping Is Needed
+
+Robots are modular. The same node might be used in:
+
+different robots
+
+different sensors
+
+simulations vs real hardware
+
+Instead of rewriting code, you remap names.
+
+📡 What Can Be Remapped
+
+You can remap:
+
+Topics (/cmd_vel, /scan)
+
+Services
+
+Actions
+
+Node names
+
+Namespaces
